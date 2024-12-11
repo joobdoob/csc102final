@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+    <title>Move Image</title>
+    <style>
+        #image {
+            position: absolute;
+            top: 50px;
+            left: 0px;
+            transition: left 2s;
+        }
+
+        #container {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            border: 2px solid #000;
+        }
+		   body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: lightblue;
+
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Move Image Across the Screen</h1>
+    <div id="container">
+        <img id="image" src="weezer.jpg" alt="Moving Image">
+    </div> <br/> <br/><br/> <br/> <br/><br/> <br/> <br/><br/> 
+    <button onclick="moveImage()">Move Image</button>
+ <h1>Simple Craps Game</h1>
+  <button onclick="playCraps()">Play Craps</button>
+
+  <div id="game-log">
+  <br/>
+   <input type="text" id="inputText" placeholder="Enter text here" />
+    <button onclick="checkPalindrome()">Check</button>
+    <div id="result"></div>
+    <script src="game.js"></script>
+    <script>
+        function moveImage() {
+            var img = document.getElementById("image");
+            var currentPosition = img.style.left;
+
+            // If the image is at the left side, move it to the right side
+            if (currentPosition === '0px') {
+                img.style.left = 'calc(100% - 100px)'; // Move to the right edge
+            } else {
+                img.style.left = '0px'; // Move back to the left edge
+            }
+        }
+		  function checkPalindrome() {
+            // Get the input text
+            const inputText = document.getElementById('inputText').value.trim().toLowerCase();
+
+            // Remove non-alphanumeric characters
+            const cleanedText = inputText.replace(/[^a-z0-9]/g, '');
+
+            // Reverse the cleaned text
+            const reversedText = cleanedText.split('').reverse().join('');
+
+            // Check if the cleaned text is the same as the reversed text
+            const resultDiv = document.getElementById('result');
+            if (cleanedText === reversedText && cleanedText !== '') {
+                resultDiv.textContent = `"${inputText}" is a palindrome!`;
+                resultDiv.style.color = 'green';
+            } else {
+                resultDiv.textContent = `"${inputText}" is not a palindrome.`;
+                resultDiv.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>

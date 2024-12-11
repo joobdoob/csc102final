@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Jade's Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 0 auto;
+            width: 300px;
+            padding: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>User Form</h2>
+        <! form for names -->
+        <form id="userForm" onsubmit="return validateForm()">
+            <label for="firstName">First Name:</label><br>
+            <input type="text" id="firstName" name="firstName"><br><br>
+
+            <label for="lastName">Last Name:</label><br>
+            <input type="text" id="lastName" name="lastName"><br><br>
+
+            <label for="zipCode">Zip Code:</label><br>
+            <input type="text" id="zipCode" name="zipCode"><br><br>
+
+            <p class="error" id="errorMessage"></p>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <p id="secretMessage" class="hidden">Congratulations! You've unlocked the secret message.</p>
+    </div>
+
+    <script>
+        function validateForm() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const zipCode = document.getElementById('zipCode').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const secretMessage = document.getElementById('secretMessage');
+
+            // Reset any previous error messages
+            errorMessage.innerHTML = '';
+            secretMessage.classList.add('hidden');
+
+            // Combine first name and last name
+            const fullName = firstName + ' ' + lastName;
+
+            // Check if full name exceeds 20 characters
+            if (fullName.length > 20) {
+                errorMessage.innerHTML = 'Full name must be less than or equal to 20 characters.';
+                return false; // Prevent form submission
+            }
+
+            // Validate zip code - must be exactly 5 digits
+            const zipCodePattern = /^\d{5}$/;
+            if (!zipCodePattern.test(zipCode)) {
+                errorMessage.innerHTML = 'Please enter a valid 5-digit zip code.';
+                return false; // Prevent form submission
+            }
+
+            // If everything is valid, show the secret message
+            secretMessage.classList.remove('hidden');
+            return false; // Prevent default form submission for demo purposes
+        }
+    </script>
+</body>
+</html>

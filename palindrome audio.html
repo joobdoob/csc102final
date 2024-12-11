@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Justin Herman -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: lightblue;
+
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+        <a href="./landing.html">Home</a><br>
+
+    <h1>Palindrome Checker</h1>
+    <input type="text" id="inputText" placeholder="Enter text here" />
+    <button onclick="checkPalindrome()">Check</button>
+    <div id="result"></div>
+<audio controls autoplay>
+  <source src="us-lab-background.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+    <script>
+        function checkPalindrome() {
+            // Get the input text
+            const inputText = document.getElementById('inputText').value.trim().toLowerCase();
+
+            // Remove non-alphanumeric characters
+            const cleanedText = inputText.replace(/[^a-z0-9]/g, '');
+
+            // Reverse the cleaned text
+            const reversedText = cleanedText.split('').reverse().join('');
+
+            // Check if the cleaned text is the same as the reversed text
+            const resultDiv = document.getElementById('result');
+            if (cleanedText === reversedText && cleanedText !== '') {
+                resultDiv.textContent = `"${inputText}" is a palindrome!`;
+                resultDiv.style.color = 'green';
+            } else {
+                resultDiv.textContent = `"${inputText}" is not a palindrome.`;
+                resultDiv.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>
